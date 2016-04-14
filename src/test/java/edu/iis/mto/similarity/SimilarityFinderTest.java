@@ -80,4 +80,14 @@ public class SimilarityFinderTest {
 		assertThat(j, is(equalTo(1.0)));
 	}
 	
+	@Test
+	public void rozneSekwencje() {
+		SearcherDubler searcherDubler = new SearcherDubler();
+		SimilarityFinder similarityFinder = new SimilarityFinder(searcherDubler);
+		int s1[] = { 1, 2, 3, 4 };
+		int s2[] = { 9, 8, 7 };
+		double j = similarityFinder.calculateJackardSimilarity(s1, s2);
+		assertThat(j, is(equalTo(0.0)));
+	}
+	
 }
