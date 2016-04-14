@@ -1,10 +1,17 @@
 package edu.iis.mto.similarity;
 
-import java.util.List;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
-import edu.iis.mto.search.*;
+import org.junit.Test;
+
+import edu.iis.mto.search.SearchResult;
+import edu.iis.mto.search.SequenceSearcher;
 
 class SearcherDubler implements SequenceSearcher {
 	
@@ -62,5 +69,15 @@ class SearcherDubler implements SequenceSearcher {
 }
 
 public class SimilarityFinderTest {
-
+	
+	@Test
+	public void identyczneSekwencje() {
+		SearcherDubler searcherDubler = new SearcherDubler();
+		SimilarityFinder similarityFinder = new SimilarityFinder(searcherDubler);
+		int s1[] = { 1, 2, 3, 4 };
+		int s2[] = { 1, 2, 3, 4 };
+		double j = similarityFinder.calculateJackardSimilarity(s1, s2);
+		assertThat(j, is(equalTo(1.0)));
+	}
+	
 }
