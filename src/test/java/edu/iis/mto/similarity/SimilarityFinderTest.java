@@ -100,4 +100,15 @@ public class SimilarityFinderTest {
 		assertThat(j, is(equalTo(2.0/6.0)));
 	}
 	
+	@Test
+	public void dlaPierwszejSekwencjiDlugosci1PrzeszukujeDrugaSekwencje1Raz() {
+		SearcherDubler searcherDubler = new SearcherDubler();
+		SimilarityFinder similarityFinder = new SimilarityFinder(searcherDubler);
+		int s1[] = { 4 };
+		int s2[] = { 2, 4, 6, 8 };
+		similarityFinder.calculateJackardSimilarity(s1, s2);
+		assertThat(searcherDubler.searchCallHistory.size(), is(1));
+		assertThat(searcherDubler.searchCallHistory.get(0).key, is(4));
+	}
+	
 }
